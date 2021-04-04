@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--author:Lucas Kucharski
+    LucKucha@uat.edu
+    wk2-1 assignment
+-->
+<html>
+<script src="code.js"></script>
+<script src="dataLoader-1.js"></script>
+<link href="style.css" rel="stylesheet" type="text/css" />
+
+<head>
+    <title>
+        UATSpace Page
+    </title>
+    <script>
+        //variables for the dom
+        var theTime = new Date();
+        var tempTime = new Date();
+        var time_interval = 5000;
+        var running = true;
+        var index = 0;
+        var timer;
+
+        //load data into array
+        var data = getData();
+        //function to load and display data
+        function updateDisplay() {
+            theTime = new Date();
+
+            var timeRead = data[index].time_seconds;
+            if (timeRead >= 10) {
+                document.getElementById("data").rows["seconds"].innerHTML = dataRow("Time Elapsed", data[index].time_seconds, "seconds");
+                document.getElementById("data").rows["latitude"].innerHTML = dataRow("latitude", data[index].latitude, " ");
+                document.getElementById("data").rows["longitude"].innerHTML = dataRow("longitude", data[index].longitude, " ");
+                document.getElementById("data").rows["gps_altitude"].innerHTML = dataRow("gps altitude", data[index].gps_altitude, " ");
+                document.getElementById("data").rows["bmpSensor_altitude"].innerHTML = dataRow("bmpSensor altitude", data[index].bmpSensor_altitude, " ");
+                document.getElementById("data").rows["bmpSensor_pressure"].innerHTML = dataRow("bmpSensor pressure", data[index].bmpSensor_pressure, " ");
+                document.getElementById("data").rows["bmpSensor_temp"].innerHTML = dataRow("bmpSensor temp", data[index].bmpSensor_temp, " ");
+                document.getElementById("data").rows["cssSensor_temp"].innerHTML = dataRow("cssSensor temp", data[index].cssSensor_temp, " ");
+                document.getElementById("data").rows["cssSensor_eCO2"].innerHTML = dataRow("cssSensor eCO2", data[index].cssSensor_eCO2, " ");
+                document.getElementById("data").rows["cssSensor_TVOC"].innerHTML = dataRow("cssSensor TVOC", data[index].cssSensor_TVOC, " ");
+                document.getElementById("data").rows["UV"].innerHTML = dataRow("UV", data[index].UV, " ");
+                document.getElementById("data").rows["accelX"].innerHTML = dataRow("accelX", data[index].accelX, " ");
+                document.getElementById("data").rows["accelY"].innerHTML = dataRow("accelY", data[index].accelY, " ");
+                document.getElementById("data").rows["accelZ"].innerHTML = dataRow("accelZ", data[index].accelZ, " ");
+                document.getElementById("data").rows["magneticX"].innerHTML = dataRow("magneticX", data[index].magneticX, " ");
+                document.getElementById("data").rows["magneticY"].innerHTML = dataRow("magneticY", data[index].magneticY, " ");
+                document.getElementById("data").rows["magneticZ"].innerHTML = dataRow("magneticZ", data[index].magneticZ, " ");
+                document.getElementById("data").rows["gyroX"].innerHTML = dataRow("gyroX", data[index].gyroX, " ");
+                document.getElementById("data").rows["gyroY"].innerHTML = dataRow("gyroY", data[index].gyroY, " ");
+                document.getElementById("data").rows["gyroZ"].innerHTML = dataRow("gyroZ", data[index].gyroZ, " ");
+
+                if (index < 500) {
+                    index = index + 1;
+                } else {
+                    index = 0;
+                }
+
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <table class="tableTop">
+        <tr>
+            <td><img src="UATspaceLogo-2-1.jpg"></td>
+            <td>
+                <h1>
+                    UATSpace Program
+                </h1>
+            </td>
+        </tr>
+    </table>
+</body>
+
+<table id="data" border="2" width="70%" class="table2">
+    <col style="width: 35%;">
+    <col style="width: 35%;">
+    <thead>
+        <tr style="font-family: fantasy;">
+            <th align="left">Data type</th>
+            <th align="left">Reading</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="seconds"></tr>
+        <tr id="latitude"></tr>
+        <tr id="longitude"></tr>
+        <tr id="gps_altitude"></tr>
+        <tr id="bmpSensor_altitude"></tr>
+        <tr id="bmpSensor_pressure"></tr>
+        <tr id="bmpSensor_temp"></tr>
+        <tr id="digSensor_temp"></tr>
+        <tr id="cssSensor_temp"></tr>
+        <tr id="cssSensor_eCO2"></tr>
+        <tr id="cssSensor_TVOC"></tr>
+        <tr id="UV"></tr>
+        <tr id="accelX"></tr>
+        <tr id="accelY"></tr>
+        <tr id="accelZ"></tr>
+        <tr id="magneticX"></tr>
+        <tr id="magneticY"></tr>
+        <tr id="magneticZ"></tr>
+        <tr id="gyroX"></tr>
+        <tr id="gyroY"></tr>
+        <tr id="gyroZ"></tr>
+    </tbody>
+</table>
+<br>
+The Current time is:<div id="time"></div>
+
+<style>
+    .button {
+        background-color: #6300af;
+        border: none;
+        color: rgb(255, 255, 255);
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+
+    }
+</style>
+
+<body>
+    <br>
+
+    <br>
+    <button class="button" onclick="start();" id="startButton">Start</button>
+    <button class="button" onclick="stop();" id="stopButton">Stop</button> <br>
+    <button class="button" onclick="playStation();">Play Space Station Sounds</button>
+    <h1>Craps Results</h1>
+    <button onclick="play();">Play Craps</button>
+
+
+</body>
+
+
+</html>
